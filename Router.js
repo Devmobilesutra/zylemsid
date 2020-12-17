@@ -340,7 +340,7 @@ export default class RouterComponent extends Component {
                             scrollEnabled
                             showLabel={true}
                             tabBarPosition='top'
-                            tabStyle={{ width: wp('35') }}
+                            tabStyle={{ width: wp('50') }}
                             labelStyle={{ fontFamily: 'Proxima Nova', width: wp(35), height: hp('3'), }}
                             indicatorStyle={{
                                 backgroundColor: '#CC1167', height: hp('0.5'),
@@ -354,7 +354,7 @@ export default class RouterComponent extends Component {
                         >
                             <Scene key='sideorder' component={sideorder} title='IN-PROCESS' hideNavBar={true}/>
                             <Scene key='preorders' component={History} title='PRE-OREDERS' hideNavBar={true} />
-                            <Scene key='History' component={History} title='HISTORY' hideNavBar={true} />
+                            {/* <Scene key='History' component={History} title='HISTORY' hideNavBar={true} /> */}
                         </Scene>
 
                         <Scene key='TabBarTargetAchi' tabs={true} tabBarStyle={styles.TabBarSurveys1}

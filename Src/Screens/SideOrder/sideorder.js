@@ -366,7 +366,7 @@ renderFABIcon = () => {
                 
                 <ImageBackground
                 source={require('../../assets/Icons/android_BG.png')}
-                 style={{width:wp('100'), height:hp('70'),resizeMode: 'cover',  justifyContent: 'center'}}
+                 style={{resizeMode: 'cover',  justifyContent: 'center'}}
             > 
                 <ScrollView 
                     showsVerticalScrollIndicator={false}
@@ -377,7 +377,8 @@ renderFABIcon = () => {
                     <View style= {styles.processColContainer}>
                       
                         <Text style = {styles.inProcessHeadingTextStyle}>
-                        Total {orderInProcess}
+                        {/* Total orderInProcess */}
+                        Total Orders : {this.state.TotalOrderLen}
                         </Text>
                     </View>
                    
@@ -475,12 +476,8 @@ renderFABIcon = () => {
                
               
 
-            <View style={{height:hp('10')}}></View>
-            </ScrollView>
-
-              
-                
-
+            <View style={{height:hp('5')}}></View>
+            </ScrollView>     
             </ImageBackground>
             
             </View>

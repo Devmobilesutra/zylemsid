@@ -264,7 +264,8 @@ export class CreateNewOrderFirst extends Component {
   }
   _renderDistributor() {
     const beat = []
-    for (var i = 0; i < this.state.DistributorData.length; i++) {
+    for (var i = 0; i < this.state.DistributorData.length; i++)
+     {
       beat.push({
         value: this.state.DistributorData[i].Distributor
       })
@@ -287,7 +288,7 @@ export class CreateNewOrderFirst extends Component {
         itemCount={4}
         data={beat}
         onChangeText={(value) => { this.onChangeHandlerDistributor(value) }}
-      // onChangeText={(value) => { this.setState({ selectedDist: value }) }}
+        // onChangeText={(value) => { this.setState({ selectedDist: value }) }}
       />
     )
   }
@@ -432,47 +433,52 @@ export class CreateNewOrderFirst extends Component {
     const comp = (a, b) => a.toLowerCase().trim() == b.toLowerCase().trim();
 
     // films=films.length===1 && comp(query, films[0].party) ? [] : films
-    return (
-      <View style={styles.searchResultContainer}>
-
-        <View style={{ flexDirection: 'row', justifyContent: 'center', alignContent: 'center' }}>
-          <View style={{ flexDirection: 'column' }}>
-            <Autocomplete
-              autoCapitalize="none"
-              autoCorrect={false}              
-              inputContainerStyle={styles.inputContainerStyle}
-              listStyle={styles.listStyle}
-              //data to show in suggestion
-              data={films.length === 1 && comp(query, films[0].party) ? [] : films}
-              //  data={films}
-              //default value if you want to set something in input
-              defaultValue={query}
-              /*onchange of the text changing the state of the query which will trigger
-              the findFilm method to show the suggestions*/
-            //  onChangeText={text => this.setState({ query: text })
-             // }D
-              onChangeText={text => this.onchanges(text)     }
-              placeholder="Search"
-              renderItem={({ item, i }) => (
-                <TouchableHighlight key={i} onPress={() => this.onSelectedParty(item.id, item.party)}>
-                  <Text style={styles.itemText}>
-                    {item.party}
-                  </Text>
-                </TouchableHighlight>
-
-              )}
-            />
+    if (this.state.entity == 'Retailer') { 
+      return (
+        <View style={styles.searchResultContainer}>
+  
+         <Text style={{color: '#796A6A',fontWeight: 'bold', fontFamily: 'Proxima Nova', marginHorizontal: wp('1'),fontSize:10,alignItems:'flex-start',justifyContent:'flex-start',marginLeft:wp('-68')}}> CHOOSE OUTLET</Text>
+          <View style={{ flexDirection: 'row', justifyContent: 'center', alignContent: 'center' }}>
+            
+            <View style={{ flexDirection: 'column' }}>
+              
+              <Autocomplete
+                autoCapitalize="none"
+                autoCorrect={false}              
+                inputContainerStyle={styles.inputContainerStyle}
+                listStyle={styles.listStyle}
+                //data to show in suggestion
+                data={films.length === 1 && comp(query, films[0].party) ? [] : films}
+                //  data={films}
+                //default value if you want to set something in input
+                defaultValue={query}
+                /*onchange of the text changing the state of the query which will trigger
+                the findFilm method to show the suggestions*/
+              //  onChangeText={text => this.setState({ query: text })
+               // }D
+                onChangeText={text => this.onchanges(text)     }
+                placeholder="Search"
+                renderItem={({ item, i }) => (
+                  <TouchableHighlight key={i} onPress={() => this.onSelectedParty(item.id, item.party)}>
+                    <Text style={styles.itemText}>
+                      {item.party}
+                    </Text>
+                  </TouchableHighlight>
+  
+                )}
+              />
+            </View>
+            <View style={styles.searchIconBG}>
+              <Image source={require('../../assets/Icons/Search.png')}
+                style={styles.searchIconStyle}></Image>
+            </View>
           </View>
-          <View style={styles.searchIconBG}>
-            <Image source={require('../../assets/Icons/Search.png')}
-              style={styles.searchIconStyle}></Image>
+          <View style={styles.descriptionContainer}>
+            {this.shopDetailss()}
           </View>
         </View>
-        <View style={styles.descriptionContainer}>
-          {this.shopDetailss()}
-        </View>
-      </View>
-    );
+      );
+    }
             
 
   }
@@ -498,28 +504,21 @@ export class CreateNewOrderFirst extends Component {
         </View>
       )
     }
-    else {
-      return (
-        <View style={styles.textDropdownContainer2}>
-          <Text style={styles.headingTitleText}>CHOOSE BEAT</Text>
-          {this._renderBeat()}
-        </View>
-      )
-    }
+    // else {
+    //   return (
+    //     <View style={styles.textDropdownContainer2}>
+    //       <Text style={styles.headingTitleText}>CHOOSE BEAT</Text>
+    //       {this._renderBeat()}
+    //     </View>
+    //   )
+    // }
   }
   DistributorView() {
-    if (this.state.entity == 'Retailer') {
       return (
         <View style={styles.textDropdownContainer3}>
           <Text style={styles.headingTitleText}>SELECT DISTRIBUTOR</Text>
           {this._renderDistributor()}
         </View>)
-    }
-    else {
-      return (
-        <View></View>
-      )
-    }
   }
 
 
@@ -539,11 +538,10 @@ export class CreateNewOrderFirst extends Component {
               {this._renderEntity()}
             </View>
 
-
+              
             {this.BeatView()}
 
             <View style={styles.textDropdownContainer2}>
-              <Text style={styles.headingTitleText}> CHOOSE OUTLET</Text>
               <View style={styles.searchResultContainer}>
                 {this.searchComponent()}
                 <View>
@@ -611,7 +609,7 @@ const styles = StyleSheet.create({
     color: '#796A6A',
     fontWeight: 'bold',
     fontFamily: 'Proxima Nova',
-    marginHorizontal: wp('1'),fontSize:10
+    marginHorizontal: wp('1'),fontSize:10,alignItems: 'flex-start'
   },
 
   dropDownContainer: {
