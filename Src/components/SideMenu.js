@@ -643,7 +643,7 @@ export default class SideMenu extends Component {
                 height: hp('7'),
                 marginRight: hp('2'),
               }}
-              source={require('../assets/Icons/Logo1.png')}
+              source={require('../assets/Icons/Logo.png')}
             />
             <Text style={styles.zylememiniTextStyle}> ZYLEMINI+</Text>
           </View>
