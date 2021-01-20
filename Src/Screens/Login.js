@@ -29,16 +29,45 @@ export class Login extends Component {
     this.handleBackButtonClick = this.handleBackButtonClick.bind(this);
   }
   doLogin = async () => {
+<<<<<<< Updated upstream
     let { user, pass } = this.state;
     const unsubscribe = NetInfo.addEventListener(state => {
       //console.log("Connection type", state.type);
    //  alert(state.isConnected)
     isInternet=state.isConnected
     //  this.setState({isInternet:state.isConnected})
+=======
+    let {user, pass} = this.state;
+    // userdata = {
+    //   id: '1',
+    //   us: this.state.user,
+    //   ps: this.state.pass,
+    //   imei: '888888',
+    //   area: '99',
+    //   log: '88',
+
+    //   distributorArray: [],
+    // };
+
+    // var test = AsyncStorage.getItem('LoginSuccess');
+    // console.log('this is validatovxczcsdasdasdas', test);
+    // if (data[0].UserName == undefined) {
+    //   console.log('this is validato', AsyncStorage.getItem('valiadtion_flag'));
+    //   db.insertUserData(userdata);
+    // // }
+    // console.log(this.state.distributorArray);
+
+    const unsubscribe = NetInfo.addEventListener(state => {
+      // console.log('Connection type', state.type);
+      //  alert(state.isConnected)
+      isInternet = state.isConnected;
+      //  this.setState({isInternet:state.isConnected})
+>>>>>>> Stashed changes
       //console.log("Is connected?Out", isInternet);
 
     });
 
+<<<<<<< Updated upstream
     if(!isInternet){
       alert("Please Check Your Internet Connection")
    
@@ -49,6 +78,54 @@ export class Login extends Component {
         AsyncStorage.setItem('username', JSON.stringify(user))
         AsyncStorage.setItem('password', JSON.stringify(pass))
         this.props.onLogin(user, pass, this.props.navigation);
+=======
+    if (!isInternet) {
+      console.log('username...', this.state.user);
+      console.log('password', this.state.pass);
+
+      db.getUserData().then(async data => {
+        console.log(
+          'this si sresponse',
+          data[0].UserName,
+          'and ',
+          data[0].Password,
+        );
+
+        // this.setState({
+        //   distributorArray: data,
+        // });
+        this.props.onLogin(user, pass, this.props.navigation);
+      });
+
+      // this.props.navigation.navigate(Dashboard);
+      // alert('Please Check Your Internet Connection');
+    } else {
+      if (user) {
+        if (pass) {
+          // this.state.flag=1,
+          this.setState({
+            flag: 1,
+          });
+          AsyncStorage.setItem('usernamess', JSON.stringify(user));
+          AsyncStorage.setItem('username', JSON.stringify(user));
+          AsyncStorage.setItem('password', JSON.stringify(pass));
+          this.props.onLogin(user, pass, this.props.navigation);
+          db.getUserData().then(async data => {
+            console.log(
+              'this si sresponse',
+              data[0].UserName,
+              'and ',
+              data[0].Password,
+            );
+
+            // this.setState({
+            //   distributorArray: data,
+            // });
+          });
+        } else {
+          alert('Please Enter Password');
+        }
+>>>>>>> Stashed changes
       } else {
         alert('Please Enter Password');
       }
@@ -188,7 +265,17 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   onLogin: (username, password, navigation) => {
+<<<<<<< Updated upstream
     dispatch(login(username, password, navigation));     
+=======
+    console.log(
+      'username',
+      username + ' password',
+      password + ' navigation',
+      navigation,
+    );
+    dispatch(login(username, password, navigation));
+>>>>>>> Stashed changes
   },
   isLoadingss: () => {
     dispatch(dispatch(loginLoading(false)));     

@@ -1817,6 +1817,7 @@ insertSubGroupMaster(SubGroupMaster_data){
   //////////////////////////////////////////////////////getDataFunctions//////////////////////////
 
   getUserData() {
+<<<<<<< Updated upstream
     var query = 'SELECT * FROM user'
     return new Promise((resolve) => {
       db1.transaction((tx) => {
@@ -1831,6 +1832,23 @@ insertSubGroupMaster(SubGroupMaster_data){
       })
         .then((result) => {
           // 
+=======
+    var query = 'SELECT Username,Password FROM user';
+    return new Promise(resolve => {
+      db1
+        .transaction(tx => {
+          tx.executeSql(query, [], (tx, results) => {
+            var tempuser = [];
+            for (let i = 0; i < results.rows.length; i++) {
+              tempuser.push(results.rows.item(i));
+            }
+
+            resolve(tempuser);
+          });
+        })
+        .then(result => {
+          //
+>>>>>>> Stashed changes
         })
         .catch((err) => {
           //console.log(err);
